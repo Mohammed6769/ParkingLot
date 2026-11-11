@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group = 'com.parking'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+ext {
+    junitVersion = '5.13.4'
+}
+
+dependencies {
+    compileOnly('jakarta.platform:jakarta.jakartaee-api:11.0.0')
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+}
+
+test {
+    useJUnitPlatform()
+}
